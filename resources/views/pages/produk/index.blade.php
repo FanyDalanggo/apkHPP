@@ -55,13 +55,12 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Kategori</th>
+                                            <th>Deskripsi</th>
                                             <th>Action</th>
                                         </tr>
                                         @php $no = 1; @endphp
                                         @foreach ($produk as $p)
                                             <tr>
-
-
                                                 <td>{{ $no++ }}
                                                 </td>
                                                 <td>
@@ -70,7 +69,7 @@
                                                 <td>
                                                     {{ $p->kategori->nama }}
                                                 </td>
-
+                                                <td>{{ $p->deskripsi }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('produk.edit', $p->id) }}'
