@@ -66,7 +66,7 @@
                                                 <td>{{ $no++ }}
                                                 </td>
                                                 <td>
-                                                    {{ $bahan->bahan_baku }}
+                                                    {{ $bahan->bahan }}
                                                 </td>
 
                                                 <td>
@@ -78,20 +78,20 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ $bahan->satuan->satuan }}
+                                                    {{ $bahan->satuan }}
                                                 </td>
 
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('bahan_baku.edit', $bahan->id_bahan_baku) }}'
+                                                        <a href='#'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
                                                         <form
-                                                            action="{{ route('bahan_baku.destroy', $bahan->id_bahan_baku) }}"
-                                                            method="POST" class="ml-2">
+                                                            action="#"
+                                                            method="#" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}" />

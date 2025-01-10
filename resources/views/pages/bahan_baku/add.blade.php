@@ -26,9 +26,6 @@
 
             <div class="section-body">
                 <h2 class="section-title">Bahan Baku</h2>
-
-
-
                 <div class="card">
                     <form action="{{ route('bahan_baku.store') }}" method="POST">
                         @csrf
@@ -38,34 +35,13 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Bahan Baku</label>
-                                <input type="text" name="bahan_baku"
+                                <input type="text" name="bahan"
                                     class="form-control @error('title')is-invalid @enderror">
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Jenis</label>
-                                <select name="jenis" class="form-control select2">
-                                    @foreach ($jenis as $jenis1)
-                                        <option value="{{ $jenis1->id_jenis_bahan }}">{{ $jenis1->jenis_bahan }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Satuan</label>
-                                <select name="satuan" class="form-control select2">
-                                    @foreach ($satuan as $satuan1)
-                                        <option value="{{ $satuan1->id_satuan }}">{{ $satuan1->satuan }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                         <div class="card-body">
@@ -92,8 +68,21 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Satuan</label>
+                                <input type="text" name="satuan"
+                                    class="form-control @error('title')is-invalid @enderror">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>

@@ -11,36 +11,28 @@ class BahanBakuController extends Controller
 {
     public function index()
     {
-        $bahan_baku = bahan_baku::with('satuan')->get();
+        $bahan_baku = bahan_baku::all();
         return view('pages.bahan_baku.index', compact('bahan_baku'));
     }
 
     public function create()
     {
-        $jenis = DB::table('t_jenis_bahan')->get();
-        $satuan = DB::table('t_satuan')->get();
-        return view('pages.bahan_baku.add', compact('jenis', 'satuan'));
+        return view('pages.bahan_baku.add');
     }
-    public function store(Request $request)
+    public function store(Request $request, bahan_baku $bahan_baku)
     {
-        // $request->validate([
-        //     'nama_bahan' => 'required|string|max:255',
-        //     'id_satuan' => 'required|exists:satuans,id',
-        //     'id_jenis_bahan' => 'required|exists:jenis_bahans,id',
-        // ]);
-
-        // BahanBaku::create([
-        //     'bahan_baku' => $request->bahan_baku,
-        //     'id_satuan' => $request->satuan,
-        //     'id_jenis_bahan' => $request->jenis,
-        // ]);
-        DB::table('t_bahan_baku')->insert([
-            'bahan_baku' => $request->bahan_baku,
-            'id_satuan' => $request->satuan,
-            'id_jenis_bahan' => $request->jenis,
-            'jumlah' => $request->jumlah,
-            'harga' => $request->harga
+        $request->validate([
+            'bahan' => 'required',
+            'jumlah' => 'required',
+            'harga' => 'required',
+            'satuan' => 'required',
         ]);
+
+        $bahan_baku->bahan = $request->bahan;
+        $bahan_baku->jumlah = $request->jumlah;
+        $bahan_baku->harga = $request->harga;
+        $bahan_baku->satuan = $request->satuan;
+        $bahan_baku->save();
 
         return redirect()->route('bahan_baku.index')->with('success', 'Bahan baku berhasil ditambahkan!');
     }
