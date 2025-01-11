@@ -13,7 +13,9 @@
             <div class="section-header">
                 <h1>Kategori</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('kategori.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('kategori.create') }}" class="btn btn-primary">
+                        <i class="fas fa-plus" style="margin-right: 5px;"></i>Add New
+                    </a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -27,15 +29,11 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-
-
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
-
                             <div class="card-body">
-
-                                <div class="float-right">
+                                <div class="float-left">
                                     <form method="GET" action="{{ route('kategori.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="nama">
@@ -45,57 +43,57 @@
                                         </div>
                                     </form>
                                 </div>
-
+                
+                                <!-- Clearfix untuk mengatur posisi elemen -->
                                 <div class="clearfix mb-3"></div>
-
+                
                                 <div class="table-responsive">
-                                    <table class="table-striped table">
-                                        <tr>
-
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @php $no = 1; @endphp
-                                        @foreach ($kategori as $k)
+                                    <table class="table table-striped table-hover text-center">
+                                        <thead>
                                             <tr>
-
-
-                                                <td>{{ $no++ }}
-                                                </td>
-                                                <td>
-                                                    {{ $k->nama }}
-                                                </td>
-
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('kategori.edit', $k->id) }}'
-                                                            class="btn btn-sm btn-info btn-icon">
-                                                            <i class="fas fa-edit"></i>
-                                                            Edit
-                                                        </a>
-
-                                                        <form action="{{ route('kategori.destroy', $k->id) }}"
-                                                            method="POST" class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
-
-
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($kategori as $k)
+                                                <tr>
+                                                    <td>{{ ($kategori->currentPage() - 1) * $kategori->perPage() + $loop->iteration }}</td>
+                                                    <td>{{ $k->nama }}</td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('kategori.edit', $k->id) }}" class="btn btn-sm btn-info mr-2">
+                                                                <i class="fas fa-edit"></i> Edit
+                                                            </a>
+                                                            <form action="{{ route('kategori.destroy', $k->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                                    <i class="fas fa-times"></i> Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3" class="text-center">No data found</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
                                     </table>
+                                </div>
+                
+                                <!-- Pagination di bawah tabel -->
+                                <div class="mt-3 d-flex justify-content-end">
+                                    {{ $kategori->links('pagination::bootstrap-4') }}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </section>
     </div>

@@ -11,11 +11,18 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produk = Produk::with('kategori')->get();
+        $search = $request->input('nama');
+        $produk = Produk::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('nama', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        
         return view('pages.produk.index', compact('produk'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

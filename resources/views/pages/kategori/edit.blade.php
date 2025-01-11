@@ -45,7 +45,11 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Update</button>
+                            <a href="{{ route('kategori.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</a>
+                                <span style="margin-right: 5px;"></span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-paper-plane" style="margin-right: 5px;"></i>Update</button>
                         </div>
                     </form>
                 </div>

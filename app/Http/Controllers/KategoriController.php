@@ -11,13 +11,18 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategori = kategori::all();
+        $search = $request->input('nama');
+        $kategori = kategori::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('nama', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+    
         return view('pages.kategori.index', compact('kategori'));
     }
-
-
+    
     /**
      * Show the form for creating a new resource.
      */

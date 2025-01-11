@@ -26,9 +26,6 @@
 
             <div class="section-body">
                 <h2 class="section-title">Kategori</h2>
-
-
-
                 <div class="card">
                     <form action="{{ route('kategori.store') }}" method="POST">
                         @csrf
@@ -38,21 +35,26 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control @error('title')is-invalid @enderror" name="nama">
-                                    @error('title')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                           
+                                <input type="text" class="form-control @error('title')is-invalid @enderror"
+                                    name="nama">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <a href="{{ route('kategori.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back
+                            </a>
+                            <span style="margin-right: 5px;"></span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-paper-plane" style="margin-right: 5px;"></i>Submit
+                            </button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </section>
     </div>
