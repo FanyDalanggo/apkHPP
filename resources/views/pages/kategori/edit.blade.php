@@ -49,7 +49,7 @@
                                 <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</a>
                                 <span style="margin-right: 5px;"></span>
                             <button class="btn btn-primary">
-                                <i class="fas fa-paper-plane" style="margin-right: 5px;"></i>Update</button>
+                                <i class="fas fa-sync" style="margin-right: 5px;"></i>Update</button>
                         </div>
                     </form>
                 </div>

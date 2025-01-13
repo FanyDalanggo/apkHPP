@@ -26,9 +26,6 @@
 
             <div class="section-body">
                 <h2 class="section-title">Produk</h2>
-
-
-
                 <div class="card">
                     <form action="{{ route('produk.store') }}" method="POST">
                         @csrf
@@ -66,7 +63,11 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <a href="{{ route('produk.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</a>
+                                <span style="margin-right: 5px;"></span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-paper-plane" style="margin-right: 5px;"></i>Submit</button>
                         </div>
                     </form>
                 </div>

@@ -26,9 +26,6 @@
 
             <div class="section-body">
                 <h2 class="section-title">Produk</h2>
-
-
-
                 <div class="card">
                     <form action="{{ route('produk.update', $produk) }}" method="POST">
                         @csrf
@@ -58,7 +55,11 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</button>
+                                <span style="margin-right: 5px;"></span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-sync" style="margin-right: 5px;"></i>Update</button>
                         </div>
                     </form>
                 </div>
