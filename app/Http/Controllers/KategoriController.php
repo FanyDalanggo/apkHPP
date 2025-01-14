@@ -19,10 +19,10 @@ class KategoriController extends Controller
                 return $query->where('nama', 'LIKE', '%' . $search . '%');
             })
             ->paginate(10);
-    
+
         return view('pages.kategori.index', compact('kategori'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */

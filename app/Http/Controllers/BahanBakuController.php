@@ -38,14 +38,33 @@ class BahanBakuController extends Controller
     }
     public function edit($id)
     {
-
-        $bahan_baku = \App\Models\bahan_baku::findOrFail($id);
-        return view('pages.bahan_baku.edit', compact('bahan_baku'));
+        $data = \App\Models\bahan_baku::findOrFail($id);
+        return view('pages.bahan_baku.edit', compact('data'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'bahan' => 'required',
+            'jumlah' => 'required',
+            'harga' => 'required',
+            'satuan' => 'required',
+        ]);
+        $bahan_baku = bahan_baku::findOrFail($id);
+
+        $bahan_baku->bahan = $request->input('bahan');
+        $bahan_baku->jumlah = $request->input('jumlah');
+        $bahan_baku->harga = $request->input('harga');
+        $bahan_baku->satuan = $request->input('satuan');
+
+        $bahan_baku->update();
+        return redirect()->route('bahan_baku.index')->with('success', 'data berhasil diubah');
+    }
+
     public function destroy($id)
     {
-        $product = \App\Models\bahan_baku::findOrFail($id);
-        $product->delete();
+        $data= bahan_baku::findOrFail($id);
+        $data->delete();
         return redirect()->route('bahan_baku.index')->with('success', 'bahan_baku Deleted Successfully');
     }
 }

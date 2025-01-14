@@ -27,8 +27,6 @@
             <div class="section-body">
                 <h2 class="section-title">Kategori</h2>
 
-
-
                 <div class="card">
                     <form action="{{ route('kategori.update', $data) }}" method="POST">
                         @csrf

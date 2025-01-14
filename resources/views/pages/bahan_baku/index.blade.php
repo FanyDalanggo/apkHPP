@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'bahan baku')
+@section('title', 'bahan_baku')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,7 +11,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>bahan baku</h1>
+                <h1>Bahan baku</h1>
                 <div class="section-header-button">
                     <a href="{{ route('bahan_baku.create') }}" class="btn btn-primary">Add New</a>
                 </div>
@@ -27,14 +27,10 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-
-
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
-
                             <div class="card-body">
-
                                 <div class="float-right">
                                     <form method="GET" action="{{ route('bahan_baku.index') }}">
                                         <div class="input-group">
@@ -47,11 +43,9 @@
                                 </div>
 
                                 <div class="clearfix mb-3"></div>
-
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
                                             <th>No</th>
                                             <th>bahan baku</th>
                                             <th>jumlah</th>
@@ -83,19 +77,17 @@
 
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='#'
+                                                        <a href='{{ route('bahan_baku.edit', $bahan->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form
-                                                            action="#"
-                                                            method="#" class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
+                                                        <form action="{{ route('bahan_baku.destroy', $bahan->id) }}"
+                                                            method="POST" class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger">
                                                                 <i class="fas fa-times"></i> Delete
                                                             </button>
                                                         </form>

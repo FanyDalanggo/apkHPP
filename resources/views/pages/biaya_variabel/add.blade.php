@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'bahan_baku')
+@section('title', 'biaya_variabel')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,63 +16,71 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Bahan Baku</h1>
+                <h1>Biaya Variabel</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Bahan Baku</div>
+                    <div class="breadcrumb-item">Biaya Variabel</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Bahan Baku</h2>
+                <h2 class="section-title">Biaya Variabel</h2>
                 <div class="card">
-                    <form action="{{ route('bahan_baku.store') }}" method="POST">
+                    <form action="{{ route('biaya_variabel.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Bahan Baku</label>
-                                <input type="text" name="bahan"
-                                    class="form-control @error('title')is-invalid @enderror">
+                                <label>Jenis Biaya</label>
+                                <input type="text" name="jenis_biaya"
+                                    class="form-control @error('title') is-invalid @enderror">
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="card-body">
+
                             <div class="form-group">
                                 <label>Jumlah</label>
                                 <input type="text" name="jumlah"
-                                    class="form-control @error('title')is-invalid @enderror">
-                                @error('title')
-                                    <div class="invalid-feedback">
-                                        {{-- {{ $message }} --}}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Harga</label>
-                                <input type="text" name="harga"
-                                    class="form-control @error('title')is-invalid @enderror">
+                                    class="form-control @error('title') is-invalid @enderror">
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="card-body">
+
+                            <div class="form-group">
+                                <label>Harga</label>
+                                <input type="text" name="harga"
+                                    class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <label>Satuan</label>
                                 <input type="text" name="satuan"
-                                    class="form-control @error('title')is-invalid @enderror">
+                                    class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>Total</label>
+                                <input type="text" name="total"
+                                    class="form-control @error('title') is-invalid @enderror">
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -86,7 +94,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </section>
     </div>
