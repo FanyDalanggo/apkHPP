@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 BiayaVariabelSeeder::class,
+                BiayaPenyusutanSeeder::class,
                 KategoriSeeder::class
             ]
         );

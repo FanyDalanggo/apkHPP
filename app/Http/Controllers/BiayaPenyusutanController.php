@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BiayaVariabel;
+use App\Models\BiayaPenyusutan;
 use Illuminate\Http\Request;
 
-class BiayaVariabelController extends Controller
+class BiayaPenyusutanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,19 @@ class BiayaVariabelController extends Controller
     {
         $search = $request->input('nama');
     
-        $biaya_variabel = BiayaVariabel::when($search, function ($query, $search) {
+        $biaya_penyusutan = BiayaPenyusutan::when($search, function ($query, $search) {
             return $query->where('jenis_biaya', 'like', '%' . $search . '%');
         })->paginate(10);
-    
-        return view('pages.biaya_variabel.index', compact('biaya_variabel', 'search'));
+
+        return view('pages.biaya_peyusutan.index', compact('biaya_penyusutan', 'search'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('pages.biaya_variabel.add');
+        return view('pages.biaya_peyusutan.add');
     }
 
     /**
@@ -36,15 +36,15 @@ class BiayaVariabelController extends Controller
     {
         $validateData = $request->validate([
             'jenis_biaya' => 'required',
-            'jumlah' => 'required',
-            'harga' => 'required',
-            'satuan' => 'required',
-            'total' => 'required',
+            'jumlah' => 'required|numeric',
+            'harga' => 'required|numeric',
+            'masa_penyusutan' => 'required',
+            'total' => 'required|numeric',
         ]);
 
-        BiayaVariabel::create($validateData);
+        BiayaPenyusutan::create($validateData);
 
-        return redirect()->route('biaya_variabel.index')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('biaya_penyusutan.index')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -60,8 +60,8 @@ class BiayaVariabelController extends Controller
      */
     public function edit($id)
     {
-        $data = BiayaVariabel::findOrFail($id);
-        return view('pages.biaya_variabel.edit', compact('data'));
+        $data = BiayaPenyusutan::findOrFail($id);
+        return view('pages.biaya_peyusutan.edit', compact('data'));
     }
 
     /**
@@ -70,28 +70,27 @@ class BiayaVariabelController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'jenis_biaya' => 'required|string|max:255',
+            'jenis_biaya' => 'required',
             'jumlah' => 'required|numeric',
             'harga' => 'required|numeric',
-            'satuan' => 'required|string|max:50',
+            'masa_penyusutan' => 'required',
             'total' => 'required|numeric',
-        ]);
-    
-        $biaya_variabel = BiayaVariabel::findOrFail($id);
-    
-        $biaya_variabel->update($validateData);
-    
-        return redirect()->route('biaya_variabel.index')->with('success', 'Data berhasil diubah.');
+        ]); 
+
+        $biaya_penyusutan = BiayaPenyusutan::findOrFail($id);
+
+        $biaya_penyusutan->update($validateData);
+
+        return redirect()->route('biaya_penyusutan.index')->with('success', 'Data berhasil diubah.');
     }
-    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BiayaVariabel $biaya_variabel)
+    public function destroy(BiayaPenyusutan $biaya_penyusutan)
     {
-        $biaya_variabel->delete();
+        $biaya_penyusutan->delete();
 
-        return redirect()->route('biaya_variabel.index')->with('success', 'Data Berhasil Dihapus');
+        return redirect()->route('biaya_penyusutan.index')->with('success', 'Data Berhasil Dihapus');
     }
 }
