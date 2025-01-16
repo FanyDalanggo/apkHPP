@@ -18,7 +18,7 @@ class KategoriController extends Controller
             ->when($search, function ($query, $search) {
                 return $query->where('nama', 'LIKE', '%' . $search . '%');
             })
-            ->paginate(10);
+            ->paginate(1);
 
         return view('pages.kategori.index', compact('kategori'));
     }

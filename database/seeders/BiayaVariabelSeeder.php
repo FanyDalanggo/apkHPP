@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\biaya_variabel;
 use App\Models\BiayaVariabel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +13,7 @@ class BiayaVariabelSeeder extends Seeder
      */
     public function run(): void
     {
-        biaya_variabel::create([
+        BiayaVariabel::create([
             'jenis_biaya' => 'Biaya Listrik',
             'jumlah' => 5,
             'harga' => 50.00,

@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="float-left">
+                                <div class="float-right">
                                     <form method="GET" action="{{ route('kategori.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="nama">
@@ -85,9 +85,33 @@
                                     </table>
                                 </div>
                 
-                                <!-- Pagination di bawah tabel -->
-                                <div class="mt-3 d-flex justify-content-end">
-                                    {{ $kategori->links('pagination::bootstrap-4') }}
+                                <div class="card-footer text-right">
+                                    <nav class="d-inline-block">
+                                        <ul class="pagination mb-0">
+                                            <li
+                                                class="page-item {{ $kategori->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $kategori->previousPageUrl() }}"
+                                                    tabindex="-1">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+
+                                            @for ($i = 1; $i <= $kategori->lastPage(); $i++)
+                                                <li
+                                                    class="page-item {{ $kategori->currentPage() == $i ? 'active' : '' }}">
+                                                    <a class="page-link"
+                                                        href="{{ $kategori->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+
+                                            <li
+                                                class="page-item {{ $kategori->hasMorePages() ? '' : 'disabled' }}">
+                                                <a class="page-link" href="{{ $kategori->nextPageUrl() }}">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>

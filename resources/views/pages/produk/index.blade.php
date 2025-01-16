@@ -17,8 +17,8 @@
                         <i class="fas fa-plus" style="margin-right: 5px;"></i>Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">produk</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('home')  }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('produk.index') }}">produk</a></div>
                     <div class="breadcrumb-item">All produk</div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="float-left">
+                                <div class="float-right">
                                     <form method="GET" action="{{ route('produk.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="nama">
@@ -83,8 +83,33 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="mt-3">
-                                        {{ $produk->links() }}
+                                    <div class="card-footer text-right">
+                                        <nav class="d-inline-block">
+                                            <ul class="pagination mb-0">
+                                                <li
+                                                    class="page-item {{ $produk->onFirstPage() ? 'disabled' : '' }}">
+                                                    <a class="page-link" href="{{ $produk->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fas fa-chevron-left"></i>
+                                                    </a>
+                                                </li>
+
+                                                @for ($i = 1; $i <= $produk->lastPage(); $i++)
+                                                    <li
+                                                        class="page-item {{ $produk->currentPage() == $i ? 'active' : '' }}">
+                                                        <a class="page-link"
+                                                            href="{{ $produk->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+
+                                                <li
+                                                    class="page-item {{ $produk->hasMorePages() ? '' : 'disabled' }}">
+                                                    <a class="page-link" href="{{ $produk->nextPageUrl() }}">
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                                 
