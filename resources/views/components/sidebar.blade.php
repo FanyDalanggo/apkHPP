@@ -69,7 +69,7 @@
                         <a class="nav-link" href="{{ route('biaya_penyusutan.index') }}">Biaya Penyusutan</a>
                     </li>
                     <li class="{{ Request::is('biaya_tetap*') ? 'active' : '' }}">
-                        <a class="nav-link" href="#">Biaya Tetap</a>
+                        <a class="nav-link" href="{{ route('biaya_tetap.index') }}">Biaya Tetap</a>
                     </li>
                 </ul>
             </li>

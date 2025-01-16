@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\BiayaPenyusutanController;
+use App\Http\Controllers\BiayaTetapController;
 use App\Http\Controllers\BiayaVariabelController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
@@ -21,4 +22,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('bahan_baku', BahanBakuController::class);
     Route::resource('biaya_variabel', BiayaVariabelController::class);
     Route::resource('biaya_penyusutan', BiayaPenyusutanController::class);
+    Route::resource('biaya_tetap', BiayaTetapController::class);
 });

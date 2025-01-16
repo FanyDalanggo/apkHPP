@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             [
                 BiayaVariabelSeeder::class,
                 BiayaPenyusutanSeeder::class,
+                BiayaTetapSeeder::class,
                 KategoriSeeder::class
             ]
         );

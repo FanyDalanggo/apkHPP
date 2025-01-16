@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'biaya_variabel')
+@section('title', 'Biaya Variabel')
 
 @push('style')
     <!-- CSS Libraries -->
