@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'hpp',
             'email' => 'hpp@gmail.com',
-            'password' => hash::make('123456789'),
+            'password' => hash::make('123'),
         ]);
 
         $this->call(
@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
                 BiayaVariabelSeeder::class,
                 BiayaPenyusutanSeeder::class,
                 BiayaTetapSeeder::class,
-                KategoriSeeder::class
+                KategoriSeeder::class,
+                BiayaOverheadSeeder::class,
+                ProdukSeeder::class,
+                KapasitasProduksiSeeder::class,
             ]
         );
     }

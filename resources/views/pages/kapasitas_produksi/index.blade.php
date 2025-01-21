@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Biaya Overhead')
+@section('title', 'Kapasitas Produksi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,16 +11,16 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Biaya Overhead</h1>
+                <h1>Kapasitas Produksi</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('biaya_overhead.create') }}" class="btn btn-primary">
+                    <a href="{{ route('kapasitas_produksi.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus" style="margin-right: 5px;"></i>Add New
                     </a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Biaya Overhead</a></div>
-                    <div class="breadcrumb-item">All Biaya Overhead</div>
+                    <div class="breadcrumb-item"><a href="#">Kapasitas Produksi</a></div>
+                    <div class="breadcrumb-item">All Kapasitas Produksi</div>
                 </div>
             </div>
             <div class="section-body">
@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="float-right">
-                                    <form method="GET" action="#">
+                                    <form method="GET" action="{{ route('kapasitas_produksi.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="nama">
                                             <div class="input-group-append">
@@ -49,36 +49,42 @@
                                     <table class="table-striped table">
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>Jenis Biaya</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Nama Produk</th>
+                                            <th>Kapasitas Perhari</th>
+                                            <th>Kapasitas Perbulan</th>
+                                            <th>Jumlah Hari Kerja</th>
                                             <th>aksi</th>
                                         </tr>
-                                        @foreach ($biaya_overhead as $bo )
-                                            
                                       
-                                            <tr class="text-center">
-                                                <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td class="text-center">{{ $bo->jenis_biaya }}</td>
-                                                <td class="text-center">{{ $bo->jumlah }}</td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('biaya_overhead.edit', $bo->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon">
-                                                            <i class="fas fa-edit"></i>
-                                                            Edit
-                                                        </a>
-                                                        <form action="{{ route('biaya_overhead.destroy', $bo->id) }}"
-                                                            method="POST" class="ml-2">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                            
+                                      @foreach ($kapasitas_produksi as $kp)
+                                          
+                                      <tr class="text-center">
+                                          <td class="text-center">{{ $loop->iteration }}</td>
+                                          <td class="text-center">{{ $kp->produks->nama }}</td>
+                                          <td class="text-center">{{ $kp->kapasitas_perhari }}</td>
+                                          <td class="text-center">{{ $kp->kapasitas_perbulan }}</td>
+                                          <td class="text-center">{{ $kp->jumlah_hari_kerja }}</td>
+                                          <td>
+                                              <div class="d-flex justify-content-center">
+                                                  <a href="#"
+                                                      class="btn btn-sm btn-info btn-icon">
+                                                      <i class="fas fa-edit"></i>
+                                                      Edit
+                                                  </a>
+                                                  <form action="#"
+                                                      method="POST" class="ml-2">
+                                                      {{-- @csrf
+                                                      @method('DELETE') --}}
+                                                      <button type="submit" class="btn btn-sm btn-danger">
+                                                          <i class="fas fa-times"></i> Delete
+                                                      </button>
+                                                  </form>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      @endforeach
+                                         
                                     </table>
                                     {{-- <div class="card-footer text-right">
                                         <nav class="d-inline-block">

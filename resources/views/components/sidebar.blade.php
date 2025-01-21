@@ -80,6 +80,16 @@
                     <span>Bahan Baku</span>
                 </a>
             </li>
+            <li class="{{ Request::is('biaya_overhead*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('biaya_overhead.index') }}"><i class="fas fa-boxes"></i>
+                    <span>Biaya Overhead</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('kapasitas_produksi*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('kapasitas_produksi.index') }}"><i class="fas fa-boxes"></i>
+                    <span>Kapasitas Produksi</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

@@ -27,41 +27,49 @@
             <div class="section-body">
                 <h2 class="section-title">Biaya Overhead</h2>
                 <div class="card">
-                    <form action="{{ route('biaya_overhead.update', $data) }}" method="POST">
+                    <form action="{{ route('biaya_overhead.store') }}" method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Biaya Overhead</label>
-                                <input type="text" name="jenis_biaya" class="form-control"
-                                    value="{{ old('nama', $data->jenis_biaya) }}" required>
+                                <label>Jenis Biaya</label>
+                                <input type="text" name="jenis_biaya"
+                                    class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="card-body">
+
                             <div class="form-group">
-                                <label>Jumlah</label>
-                                <input type="text" name="jumlah" class="form-control"
-                                    value="{{ old('nama', $data->jumlah) }}" required>
+                                <label>Jumlah biaya</label>
+                                <input type="number" name="jumlah"
+                                    class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                      </div>
-                        </div>
                         <div class="card-footer text-right">
                             <a href="{{ route('biaya_overhead.index') }}" class="btn btn-primary">
                                 <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</a>
-                            <span style="margin-right: 5px;"></span>
+                                <span style="margin-right: 5px;"></span>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-sync" style="margin-right: 5px;"></i>Update</button>
+                                <i class="fas fa-paper-plane" style="margin-right: 5px;"></i>Submit</button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </section>
     </div>
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 @endpush
+
+
