@@ -10,7 +10,6 @@ class bahan_baku extends Model
 
     protected $fillable = [
         'bahan',
-        'jumlah',
         'harga',
         'satuan',
     ];

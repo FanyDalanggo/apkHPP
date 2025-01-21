@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Biaya Penyusutan')
+@section('title', 'Biaya Overhead')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,7 +11,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Biaya Penyusutan</h1>
+                <h1>Biaya Overhead</h1>
                 <div class="section-header-button">
                     <a href="{{ route('biaya_penyusutan.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus" style="margin-right: 5px;"></i>Add New
@@ -19,8 +19,8 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Biaya Penyusutan</a></div>
-                    <div class="breadcrumb-item">All Biaya Penyusutan</div>
+                    <div class="breadcrumb-item"><a href="#">Biaya Overhead</a></div>
+                    <div class="breadcrumb-item">All Biaya Overhead</div>
                 </div>
             </div>
             <div class="section-body">
@@ -51,19 +51,13 @@
                                             <th>No</th>
                                             <th>Jenis Biaya</th>
                                             <th>Jumlah</th>
-                                            <th>Harga</th>
-                                            <th>Masa Penyusutan (Bulan)</th>
-                                            <th>Total</th>
                                             <th>aksi</th>
                                         </tr>
-                                        @foreach ($biaya_penyusutan as $bp)
+                                        @foreach ($biaya_overhead as $bo)
                                             <tr class="text-center">
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $bp->jenis_biaya }}</td>
                                                 <td class="text-center">{{ number_format($bp->jumlah, 0, ',', '.') }}</td>
-                                                <td class="text-center">{{ number_format($bp->harga, 0, ',', '.') }}</td>
-                                                <td class="text-center">{{ $bp->masa_penyusutan }}</td>
-                                                <td class="text-center">{{ number_format($bp->total, 0, ',', '.') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href="{{ route('biaya_penyusutan.edit', $bp->id) }}"

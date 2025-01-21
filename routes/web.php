@@ -23,4 +23,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('biaya_variabel', BiayaVariabelController::class);
     Route::resource('biaya_penyusutan', BiayaPenyusutanController::class);
     Route::resource('biaya_tetap', BiayaTetapController::class);
+   
 });

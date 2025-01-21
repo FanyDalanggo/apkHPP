@@ -47,8 +47,7 @@
                                     <table class="table-striped table">
                                         <tr>
                                             <th>No</th>
-                                            <th>bahan baku</th>
-                                            <th>jumlah</th>
+                                            <th>Nama bahan baku</th>
                                             <th>harga</th>
                                             <th>satuan</th>
                                             <th>aksi</th>
@@ -62,11 +61,6 @@
                                                 <td>
                                                     {{ $bahan->bahan }}
                                                 </td>
-
-                                                <td>
-                                                    {{ $bahan->jumlah }}
-                                                </td>
-
                                                 <td>
                                                     {{ $bahan->harga }}
                                                 </td>

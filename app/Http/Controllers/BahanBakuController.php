@@ -38,7 +38,7 @@ class BahanBakuController extends Controller
     }
     public function edit($id)
     {
-        $data = \App\Models\bahan_baku::findOrFail($id);
+        $data = bahan_baku::findOrFail($id);
         return view('pages.bahan_baku.edit', compact('data'));
     }
 
@@ -63,7 +63,7 @@ class BahanBakuController extends Controller
 
     public function destroy($id)
     {
-        $data= bahan_baku::findOrFail($id);
+        $data = bahan_baku::findOrFail($id);
         $data->delete();
         return redirect()->route('bahan_baku.index')->with('success', 'bahan_baku Deleted Successfully');
     }
