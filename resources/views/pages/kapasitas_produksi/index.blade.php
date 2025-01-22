@@ -55,10 +55,8 @@
                                             <th>Jumlah Hari Kerja</th>
                                             <th>aksi</th>
                                         </tr>
-                                      
-                                            
-                                      @foreach ($kapasitas_produksi as $kp)
-                                          
+   
+                                      @foreach ($kapasitas_produksi as $kp)                                          
                                       <tr class="text-center">
                                           <td class="text-center">{{ $loop->iteration }}</td>
                                           <td class="text-center">{{ $kp->produks->nama }}</td>
@@ -67,15 +65,15 @@
                                           <td class="text-center">{{ $kp->jumlah_hari_kerja }}</td>
                                           <td>
                                               <div class="d-flex justify-content-center">
-                                                  <a href="#"
+                                                  <a href="{{ route('kapasitas_produksi.edit', $kp->id) }}"
                                                       class="btn btn-sm btn-info btn-icon">
                                                       <i class="fas fa-edit"></i>
                                                       Edit
                                                   </a>
-                                                  <form action="#"
+                                                  <form action="{{ route('kapasitas_produksi.destroy', $kp->id) }}"
                                                       method="POST" class="ml-2">
-                                                      {{-- @csrf
-                                                      @method('DELETE') --}}
+                                                      @csrf
+                                                      @method('DELETE')
                                                       <button type="submit" class="btn btn-sm btn-danger">
                                                           <i class="fas fa-times"></i> Delete
                                                       </button>
@@ -86,34 +84,34 @@
                                       @endforeach
                                          
                                     </table>
-                                    {{-- <div class="card-footer text-right">
+                                    <div class="card-footer text-right">
                                         <nav class="d-inline-block">
                                             <ul class="pagination mb-0">
                                                 <li
-                                                    class="page-item {{ $biaya_penyusutan->onFirstPage() ? 'disabled' : '' }}">
-                                                    <a class="page-link" href="{{ $biaya_penyusutan->previousPageUrl() }}"
+                                                    class="page-item {{ $kapasitas_produksi->onFirstPage() ? 'disabled' : '' }}">
+                                                    <a class="page-link" href="{{ $kapasitas_produksi->previousPageUrl() }}"
                                                         tabindex="-1">
                                                         <i class="fas fa-chevron-left"></i>
                                                     </a>
                                                 </li>
 
-                                                @for ($i = 1; $i <= $biaya_penyusutan->lastPage(); $i++)
+                                                @for ($i = 1; $i <= $kapasitas_produksi->lastPage(); $i++)
                                                     <li
-                                                        class="page-item {{ $biaya_penyusutan->currentPage() == $i ? 'active' : '' }}">
+                                                        class="page-item {{ $kapasitas_produksi->currentPage() == $i ? 'active' : '' }}">
                                                         <a class="page-link"
-                                                            href="{{ $biaya_penyusutan->url($i) }}">{{ $i }}</a>
+                                                            href="{{ $kapasitas_produksi->url($i) }}">{{ $i }}</a>
                                                     </li>
                                                 @endfor
 
                                                 <li
-                                                    class="page-item {{ $biaya_penyusutan->hasMorePages() ? '' : 'disabled' }}">
-                                                    <a class="page-link" href="{{ $biaya_penyusutan->nextPageUrl() }}">
+                                                    class="page-item {{ $kapasitas_produksi->hasMorePages() ? '' : 'disabled' }}">
+                                                    <a class="page-link" href="{{ $kapasitas_produksi->nextPageUrl() }}">
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </nav>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>

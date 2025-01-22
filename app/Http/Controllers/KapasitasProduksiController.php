@@ -62,22 +62,35 @@ class KapasitasProduksiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produk = Produk::all();
+        $kapasitas_produksi = KapasitasProduksi::findOrFail($id);
+        return view('pages.kapasitas_produksi.edit', compact('kapasitas_produksi', 'produk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'produks_id' => 'required',
+            'kapasitas_perhari' => 'required',
+            'kapasitas_perbulan' => 'required',
+            'jumlah_hari_kerja' => 'required',
+        ]);
+
+        KapasitasProduksi::where('id', $id)->update($validateData);
+
+        return redirect()->route('kapasitas_produksi.index')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(KapasitasProduksi $kapasitas_produksi)
     {
-        //
+        $kapasitas_produksi->delete();
+
+        return redirect()->route('kapasitas_produksi.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

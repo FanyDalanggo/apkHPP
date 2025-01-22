@@ -12,7 +12,7 @@ class KapasitasProduksi extends Model
         'produks_id',
         'kapasitas_perhari',
         'kapasitas_perbulan',
-        'jumlah_hari_kerja,'
+        'jumlah_hari_kerja'
     ];
 
     public function produks()
