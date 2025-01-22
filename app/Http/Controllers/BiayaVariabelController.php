@@ -19,7 +19,7 @@ class BiayaVariabelController extends Controller
         })->paginate(10);
     
         return view('pages.biaya_variabel.index', compact('biaya_variabel', 'search'));
-    }
+    }    
     
     /**
      * Show the form for creating a new resource.

@@ -21,6 +21,7 @@ class BiayaOverheadController extends Controller
         return view('pages.biaya_overhead.index', compact('biaya_overhead', 'search'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -37,7 +38,7 @@ class BiayaOverheadController extends Controller
         $validateData = $request->validate([
             'jenis_biaya' => 'required',
             'jumlah' => 'required',
-            
+
         ]);
 
         BiayaOverhead::create($validateData);
@@ -69,10 +70,10 @@ class BiayaOverheadController extends Controller
         $validateData = $request->validate([
             'jenis_biaya' => 'required',
             'jumlah' => 'required|numeric',
-           
-        ]); 
 
-        $biaya_overhead =BiayaOverhead::findOrFail($id);
+        ]);
+
+        $biaya_overhead = BiayaOverhead::findOrFail($id);
 
         $biaya_overhead->update($validateData);
 

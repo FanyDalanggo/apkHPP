@@ -13,13 +13,14 @@ class BiayaTetapController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('nama');
-    
+
         $biaya_tetap = BiayaTetap::when($search, function ($query, $search) {
             return $query->where('jenis_biaya', 'like', '%' . $search . '%');
         })->paginate(10);
 
         return view('pages.biaya_tetap.index', compact('biaya_tetap', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.

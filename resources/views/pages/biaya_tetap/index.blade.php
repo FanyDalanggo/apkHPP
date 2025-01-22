@@ -34,9 +34,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="float-right">
-                                    <form method="GET" action="#">
+                                    <form method="GET" action="{{ route('biaya_tetap.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search" name="nama">
+                                            <input type="text" class="form-control" placeholder="Search by Jenis Biaya"
+                                                name="nama" value="{{ request('nama') }}">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -85,8 +86,7 @@
                                     <div class="card-footer text-right">
                                         <nav class="d-inline-block">
                                             <ul class="pagination mb-0">
-                                                <li
-                                                    class="page-item {{ $biaya_tetap->onFirstPage() ? 'disabled' : '' }}">
+                                                <li class="page-item {{ $biaya_tetap->onFirstPage() ? 'disabled' : '' }}">
                                                     <a class="page-link" href="{{ $biaya_tetap->previousPageUrl() }}"
                                                         tabindex="-1">
                                                         <i class="fas fa-chevron-left"></i>
@@ -101,8 +101,7 @@
                                                     </li>
                                                 @endfor
 
-                                                <li
-                                                    class="page-item {{ $biaya_tetap->hasMorePages() ? '' : 'disabled' }}">
+                                                <li class="page-item {{ $biaya_tetap->hasMorePages() ? '' : 'disabled' }}">
                                                     <a class="page-link" href="{{ $biaya_tetap->nextPageUrl() }}">
                                                         <i class="fas fa-chevron-right"></i>
                                                     </a>
@@ -118,6 +117,18 @@
             </div>
         </section>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.querySelector('input[name="nama"]');
+            const searchForm = searchInput.closest('form');
+
+            searchInput.addEventListener('input', function() {
+                if (searchInput.value.trim() === "") {
+                    searchForm.submit();
+                }
+            });
+        });
+    </script>
 @endsection
 
 @push('scripts')

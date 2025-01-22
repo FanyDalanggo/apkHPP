@@ -12,15 +12,20 @@ class KapasitasProduksiController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        $search = $request->input('nama');
+{
+    $search = $request->input('nama');
 
-        $kapasitas_produksi = KapasitasProduksi::when($search, function ($query, $search) {
-            return $query->where('kapasitas_perhari', 'like', '%' . $search . '%');
-        })->paginate(10);
+    $kapasitas_produksi = KapasitasProduksi::with('produks') 
+        ->when($search, function ($query, $search) {
+            return $query->whereHas('produks', function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%');
+            });
+        })
+        ->paginate(10);
 
-        return view('pages.kapasitas_produksi.index', compact('kapasitas_produksi', 'search'));
-    }
+    return view('pages.kapasitas_produksi.index', compact('kapasitas_produksi', 'search'));
+}
+
 
 
     /**

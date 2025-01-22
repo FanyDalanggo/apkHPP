@@ -13,13 +13,14 @@ class BiayaPenyusutanController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('nama');
-    
+
         $biaya_penyusutan = BiayaPenyusutan::when($search, function ($query, $search) {
             return $query->where('jenis_biaya', 'like', '%' . $search . '%');
         })->paginate(10);
 
-        return view('pages.biaya_peyusutan.index', compact('biaya_penyusutan', 'search'));
+        return view('pages.biaya_penyusutan.index', compact('biaya_penyusutan', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -75,7 +76,7 @@ class BiayaPenyusutanController extends Controller
             'harga' => 'required|numeric',
             'masa_penyusutan' => 'required',
             'total' => 'required|numeric',
-        ]); 
+        ]);
 
         $biaya_penyusutan = BiayaPenyusutan::findOrFail($id);
 
